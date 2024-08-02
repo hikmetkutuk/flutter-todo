@@ -46,4 +46,13 @@ public class TaskService {
         }
         return null;
     }
+
+    public String deleteTask(Long id) {
+        TaskItem taskItem = taskRepository.findById(id).orElse(null);
+        if (taskItem != null) {
+            taskRepository.delete(taskItem);
+            return "Task deleted successfully";
+        }
+        return "Task not found";
+    }
 }
