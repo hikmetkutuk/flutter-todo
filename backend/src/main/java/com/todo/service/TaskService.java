@@ -35,4 +35,15 @@ public class TaskService {
                 ))
                 .collect(Collectors.toList());
     }
+
+    public TaskResponse updateTask(Long id) {
+        TaskItem taskItem = taskRepository.findById(id).orElse(null);
+        if (taskItem != null) {
+            boolean done = taskItem.isDone();
+            taskItem.setDone(!done);
+            taskRepository.save(taskItem);
+            return new TaskResponse(taskItem.getId(), taskItem.getTitle(), taskItem.isDone());
+        }
+        return null;
+    }
 }

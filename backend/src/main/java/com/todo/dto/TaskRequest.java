@@ -4,6 +4,7 @@ import jakarta.validation.constraints.NotNull;
 
 public record TaskRequest(
         @NotNull(message = "Title is required")
-        String title
+        String title,
+        boolean done
 ) {
 }

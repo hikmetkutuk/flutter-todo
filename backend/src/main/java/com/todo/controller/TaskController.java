@@ -33,10 +33,21 @@ public class TaskController {
     /**
      * Get all tasks.
      *
-     * @return         list of TaskResponse objects
+     * @return list of TaskResponse objects
      */
     @GetMapping("/list")
     public ResponseEntity<List<TaskResponse>> getAllTasks() {
         return ResponseEntity.ok(taskService.getAllTasks());
+    }
+
+    /**
+     * Update a task by its ID.
+     *
+     * @param id the ID of the task to update
+     * @return the updated task response
+     */
+    @PutMapping("/update/{id}")
+    public ResponseEntity<TaskResponse> updateTask(@PathVariable Long id) {
+        return ResponseEntity.ok(taskService.updateTask(id));
     }
 }
