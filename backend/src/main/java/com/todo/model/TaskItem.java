@@ -17,6 +17,6 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "t_task_item")
 public class TaskItem extends BaseEntity {
     private String title;
-    private boolean done;
+    private boolean done = false;
 }
 
