@@ -5,10 +5,9 @@ import com.todo.dto.TaskResponse;
 import com.todo.service.TaskService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/task")
@@ -29,5 +28,15 @@ public class TaskController {
     @PostMapping("/create")
     public ResponseEntity<TaskResponse> createTask(@Valid @RequestBody TaskRequest request) {
         return ResponseEntity.ok(taskService.createTask(request));
+    }
+
+    /**
+     * Get all tasks.
+     *
+     * @return         list of TaskResponse objects
+     */
+    @GetMapping("/list")
+    public ResponseEntity<List<TaskResponse>> getAllTasks() {
+        return ResponseEntity.ok(taskService.getAllTasks());
     }
 }
